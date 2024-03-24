@@ -270,3 +270,5 @@ Getting and setting environment variables using os.Getenv and os.Setenv.
 
 	fmt.Println(scores[3:4])
 ```
+
+**Maps**
