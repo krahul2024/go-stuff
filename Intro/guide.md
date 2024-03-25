@@ -332,8 +332,158 @@ type User struct {
 	default:
 		// do something
 	}
+	// creating values on the go 
+	if num := 4; num < 10 {
+		// do something
+	} else {
+		// do something 
+	}
+```
+
+**Loops** 
+*There are no other types of loops except for* 
+```go 
+
+	arr := []int{4, 2, 42, 909, 132, 12}
+	// there are no other loops except for
+
+	for i, x := range arr {
+		fmt.Println(i, x)
+	}
+
+	count := 0
+
+	for {
+		fmt.Print(count, " ")
+		count += 1
+		if count == 5 {
+			break
+		}
+	}
+
+	// count = 0
+
+	for true {
+		count += 1
+		if count == 9 {
+			break
+
+		} else if count == 6 {
+
+			continue
+
+		} else {
+
+			fmt.Print(count, " ")
+
+		}
+	}
+	fmt.Println("")
+
+	for i := 0; i < len(arr); i++ { // there is no ++i in go
+		fmt.Print(arr[i], " ")
+	}
+
+	fmt.Println("")
+
+	for i := range arr {
+		fmt.Print(arr[i], " ")
+	}
+
+	// learn to use goto statements 
 
 ```
+
+**Functions** 
+```go 
+
+func main() {
+	ans := factorial(5)
+	fmt.Println(ans)
+
+	arr := []int{4, 5, 6, 1, 2, 3}
+	fmt.Println(sum(arr...))
+}
+
+func factorial(n int) int {
+	if n <= 1 {
+		return 1
+	}
+	return n * factorial(n-1)
+}
+
+func add(a, b int) int {
+	return a + b
+}
+
+func swap(a, b int) (int, int) {
+	return b, a
+}
+
+func sum(arr ...int) int { // variable sized arrays
+	sm := 0
+	for i := range arr {
+		sm += arr[i]
+	}
+	return sm
+}
+
+func f1(arr [5]int) []int {
+	fmt.Println(arr)
+	return arr[:]
+}
+
+func f2(num int, str string, x bool, m map[string]int, arr [5]int) {
+	// do something
+}
+
+// functions inside a function 
+func main() {
+
+	var factorial func(int) int
+
+	factorial = func(n int) int {
+		if n <= 1 {
+			return 1
+		}
+		return factorial(n-1) * n
+	}
+
+	fmt.Println(factorial(5))
+}
+
+func main() {
+	x := 523
+
+	var factorial func(int) int
+	factorial = func(n int) int {
+		if n <= 1 {
+			return 1
+		}
+		return factorial(n-1) * n * x // Use the variable x inside the factorial function
+	}
+
+	modifyVar := func() {
+		x = x * 12
+	}
+	modifyVar()
+
+	funInput := func(x int, f func(int) int) int {
+		return f(x)
+	}
+
+	fmt.Println(funInput(5, factorial))
+}
+
+func main() {
+	
+	// anonymous function
+	func() {
+		fmt.Println("This function is called immediately")
+	}()
+}
+```
+
 
 
 
