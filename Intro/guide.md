@@ -272,3 +272,68 @@ Getting and setting environment variables using os.Getenv and os.Setenv.
 ```
 
 **Maps**
+
+```go
+	m := make(map[string]int)
+	fmt.Println(m) // prints map[]
+
+	m["key1"] = 5
+	m["key2"] = 6
+	fmt.Println(m, m["key2"], m["key5"]) // for non-existing one it would print default values for each data-type
+	delete(m, "key4")                    // deleting the values
+
+	// using the for loop
+	for key, value := range m {
+		fmt.Println(key, value)
+	}
+```
+
+**Structs**
+*No classes in Go* 
+```go
+
+func main() {
+	// no inheritance in go, no super or parent concepts since there are no classes
+
+	user_1 := User{"user_name", 18, "user_email", true}
+	fmt.Println(user_1)
+	fmt.Println(user_1.Name, user_1.Email)
+	fmt.Printf("%+v", user_1) // +v prints something like this -> { name:user_name age:18 email:user_email admin:true}
+}
+
+type User struct {
+	Name  string // we need to use Name if they are being exported
+	Age   int
+	Email string
+	Admin bool
+}
+
+```
+
+**Conditionals** 
+```go
+	count := 12
+	if count <= 5 {
+		// do something
+	} else if count < 53 {
+		//do something
+	} else if count < 100 {
+		// do something
+	} else {
+		// do something
+	}
+
+	// no ternary operators in golang
+	switch expression {
+	case value1:
+		// do something
+	case value2:
+		// do something
+	default:
+		// do something
+	}
+
+```
+
+
+
