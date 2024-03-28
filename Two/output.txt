@@ -1,1 +1,1 @@
-This is some other content of the this file with a number : 43
+This is some string in the output.txt file.
