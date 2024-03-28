@@ -482,6 +482,102 @@ func main() {
 		fmt.Println("This function is called immediately")
 	}()
 }
+
+// some advanced functions related stuff 
+func main() {
+	x := 50
+	fun_b, fun_c := a(x)
+	fmt.Println(fun_b(x), fun_c(x))
+
+	fmt.Println(fun_b(5234123))
+	fmt.Println(fun_b) // prints the address of function_b
+}
+
+func a(x int) (func(int) int, func(int) string) {
+	fmt.Println("From the function a, ", x)
+	b := func(k int) int {
+		fmt.Println("From the function b, ", k)
+		return k * 12
+	}
+	c := func(k int) string {
+		fmt.Println("From the function c, ", k)
+		return "value of k is " + string(k) + "\n"
+	}
+	return b, c
+}
+```
+**Mutability and immutability** 
+*Learn more about these; strings, constants are immutable in go*
+
+```go
+var x []int = []int{1, 31, 3132, 909}
+	y := x
+	fmt.Println("x : ", x, &x[0], "y : ", y, &y[0])
+	/*
+		here both x and y start from the same address, so if we change any of the values
+		say x or y then it would reflect in the both variables and would have same changes
+		keeping y and x same,
+		The reason being slices are reference types, When we assign a slice to another variable,
+		we're essentially creating another reference to the same underlying array, meaning changes made to the elements
+		of the slice through one variable will be reflected in the other variable as well, because they both
+		point to the same memory locations.
+	*/
+	y[0] = 1234
+	fmt.Println("x : ", x, &x[0], "y : ", y, &y[0]) // it would print x = y
+
+	// to overcome this we can create copies
+	z := make([]int, len(x))
+	copy(z, x)
+	fmt.Println("x : ", x, &x[0], "z : ", z, &z[0])
+	z[0] = 980
+	fmt.Println("x : ", x, &x[0], "z : ", z, &z[0])
+
+```
+
+
+**Structs** 
+```go 
+func main() {
+	// var user1 User = User{"fas", 5}
+	user1 := User{"Random Name", 34, []string{}}
+	fmt.Println(user1, user1.name, user1.age)
+
+	user2 := User{age: 42}
+	// fmt.Println(user2, &user2) // prints &(...values)
+
+	changeUserName(&user2)
+	// fmt.Println(user2)
+
+	fmt.Println(user1.friends)
+	user1.addFriends([]string{"one", "two", "three"})
+	fmt.Println(user1.friends)
+}
+
+type User struct {
+	name    string
+	age     int
+	friends []string
+}
+
+// struct method for User
+func (user User) getFriends() []string {
+	return user.friends
+}
+
+// use the pointers when modification is needed on the original data
+func (user *User) addFriends(users []string) {
+	user.friends = append(user.friends, users...)
+}
+
+func changeUserName(user *User) {
+	user.name = "This is changed name!"
+}
+```
+
+**Interfaces** 
+*interfaces in go are set of method signatures and not the acutal methods. 
+```go 
+
 ```
 
 
