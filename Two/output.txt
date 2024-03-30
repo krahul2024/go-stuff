@@ -1,1 +1,0 @@
-This is some string in the output.txt file.

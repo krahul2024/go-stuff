@@ -1,1 +1,4 @@
-server-one/.env
+.env 
+vendor/
+.vscode/
+crud-mux
